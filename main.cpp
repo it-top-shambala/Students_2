@@ -1,6 +1,15 @@
 #include <iostream>
 
+#include "StudentsDb.h"
+#include "ConsoleHelper.h"
+
+using namespace std;
+
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    StudentsDb db;
+    db.Init();
+
+    PrintStudents(db.ToVector());
+
     return 0;
 }
