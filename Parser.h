@@ -47,7 +47,9 @@ Student ParserStudent(string student_str) {
     student.id = stoi(Parser(student_str, GENERAL_DELIMITER));
     student.last_name = Parser(student_str, GENERAL_DELIMITER);
     student.first_name = Parser(student_str, GENERAL_DELIMITER);
-    student.subjects = ParserSubjects(student_str);
+    if (student_str != "") {
+        student.subjects = ParserSubjects(student_str);
+    }
     return student;
 }
 

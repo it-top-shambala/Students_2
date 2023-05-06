@@ -1,15 +1,32 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-struct Subject {
+class Subject {
 + name : string
-+ marks[] : int
++ marks : int[]
 }
 
-struct Student {
+Subject *-- Student
+class Student {
 + first_name : string
 + last_name : string
-+ subjects[] : Subject
++ subjects : Subject[]
++ Init(last_name : string, first_name : string) : void
 }
 
+Student *-- StudentsDb
+class StudentsDb {
++ PATH : string
++ id : int
++ students : map<int, Student>
+
++ Init() : void
++ Export() : void
+
++ Add(student : Student) : void
++ Update(student : Student) : void
++ Delete(id : int) : void
+
++ ToVector() : Student[]
+}
 @enduml

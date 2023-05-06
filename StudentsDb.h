@@ -32,8 +32,9 @@ struct StudentsDb {
         //TODO
     }
 
-    void Delete(int id) {
-        //TODO
+    void Delete(int idStudent) {
+        students.erase(idStudent);
+        Export();
     }
 
     void Init() {
@@ -56,19 +57,19 @@ struct StudentsDb {
             students.insert(pair<int, Student>(student.id, student));
         }
 
-        id = students.end()->second.id;
+        id = students.rbegin()->second.id;
     }
 
     void Export() {
         ofstream file;
         file.open(PATH, ios::trunc);
 
-        for (auto s : students) {
+        for (auto s: students) {
             auto student = s.second;
             file << student.id << "|" << student.last_name << "|" << student.first_name << "|";
-            for (Subject subject : student.subjects) {
+            for (Subject subject: student.subjects) {
                 file << subject.name << ":";
-                for (int mark : subject.marks) {
+                for (int mark: subject.marks) {
                     file << mark << ",";
                 }
                 file << ";";
@@ -82,7 +83,7 @@ struct StudentsDb {
     vector<Student> ToVector() {
         vector<Student> result;
 
-        for (auto student : students) {
+        for (auto student: students) {
             result.push_back(student.second);
         }
 
