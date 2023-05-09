@@ -29,7 +29,11 @@ struct StudentsDb {
     }
 
     void Update(Student student) {
-        //TODO
+        student.id=id;
+        students.erase(id);
+        students.insert(pair<int, Student>(id, student));
+        Export();
+
     }
 
     void Delete(int idStudent) {
